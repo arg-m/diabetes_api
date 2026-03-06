@@ -6,3 +6,10 @@ DATABASE_URL = "postgresql://diabetes_user:password123@localhost:5432/diabetes_a
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
