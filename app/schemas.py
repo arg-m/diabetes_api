@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 
 class RiskCreate(BaseModel):
     age: int = Field(..., ge=0, le=120)
@@ -12,5 +12,4 @@ class RiskResponse(BaseModel):
     glucose: float
     risk_score: float
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
